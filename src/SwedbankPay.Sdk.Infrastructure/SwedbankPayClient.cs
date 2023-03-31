@@ -11,10 +11,12 @@ namespace SwedbankPay.Sdk
     {
         public SwedbankPayClient(HttpClient httpClient, IPaymentOrdersResource paymentOrders, IConsumersResource consumers, IPaymentInstrumentsResource payments)
         {
+#if !NET35
             if (!ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls12))
             {
                 ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
             }
+#endif
             if (httpClient == null)
             {
                 throw new ArgumentNullException(nameof(httpClient));

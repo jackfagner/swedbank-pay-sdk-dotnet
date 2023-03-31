@@ -50,7 +50,7 @@ namespace SwedbankPay.Sdk
         /// <returns></returns>
         public static bool IsValidCurrencyCode(string currencyCode)
         {
-            if (string.IsNullOrWhiteSpace(currencyCode))
+            if (currencyCode.IsNullOrWhiteSpace())
             {
                 return false;
             }

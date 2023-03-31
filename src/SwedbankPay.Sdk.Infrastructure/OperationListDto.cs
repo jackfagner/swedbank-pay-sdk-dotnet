@@ -16,7 +16,11 @@ namespace SwedbankPay.Sdk
 
         public override string ToString()
         {
+#if NET35
+            return string.Join(", ", this.Select(o => o.Rel).ToArray());
+#else
             return string.Join(", ", this.Select(o => o.Rel));
+#endif
         }
 
         public IOperationList Map()

@@ -15,7 +15,7 @@ namespace SwedbankPay.Sdk
         /// <param name="msisdn">The payers MSISDN.</param>
         public Msisdn(string msisdn)
         {
-            if (string.IsNullOrWhiteSpace(msisdn))
+            if (msisdn.IsNullOrWhiteSpace())
             {
                 throw new ArgumentException($"Invalid msisdn: {msisdn}", nameof(msisdn));
             }
@@ -31,7 +31,7 @@ namespace SwedbankPay.Sdk
         /// <returns>false if not valid, true otherwise.</returns>
         public static bool TryParse(string msisdn, out Msisdn validMsisdn)
         {
-            if (string.IsNullOrWhiteSpace(msisdn))
+            if (msisdn.IsNullOrWhiteSpace())
             {
                 validMsisdn = null;
                 return false;

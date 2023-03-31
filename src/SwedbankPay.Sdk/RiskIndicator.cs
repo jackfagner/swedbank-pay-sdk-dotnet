@@ -2,6 +2,9 @@
 
 namespace SwedbankPay.Sdk
 {
+    /// <summary>
+    /// Risk indicator object for 3D Secure 2.0 risk assessment.
+    /// </summary>
 	public class RiskIndicator : IRiskIndicator
     {
         /// <summary>

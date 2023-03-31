@@ -43,7 +43,11 @@ namespace SwedbankPay.Sdk
                 }
             }
 
+#if NET35
+            var queryString = string.Join(",", s.ToArray());
+#else
             var queryString = string.Join(",", s);
+#endif
             return $"?$expand={queryString}";
         }
     }

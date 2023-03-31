@@ -123,6 +123,9 @@ namespace SwedbankPay.Sdk.PaymentOrders
         /// </summary>
         public Amount VatAmount { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string InitiatingSystemUserAgent { get; }
     }
 }

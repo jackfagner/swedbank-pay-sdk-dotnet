@@ -11,7 +11,7 @@ namespace SwedbankPay.Sdk.Extensions
         public static Uri GetUrlWithQueryString(this Uri uri, PaymentExpand paymentExpand)
         {
             var paymentExpandQueryString = GetExpandQueryString<PaymentExpand>(paymentExpand);
-            var url = !string.IsNullOrWhiteSpace(paymentExpandQueryString)
+            var url = !paymentExpandQueryString.IsNullOrWhiteSpace()
                 ? new Uri(uri.OriginalString + paymentExpandQueryString, UriKind.RelativeOrAbsolute)
                 : uri;
             return url;
@@ -20,7 +20,7 @@ namespace SwedbankPay.Sdk.Extensions
         public static Uri GetUrlWithQueryString(this Uri uri, PaymentOrderExpand paymentExpand)
         {
             string paymentExpandQueryString = GetExpandQueryString<PaymentOrderExpand>(paymentExpand);
-            var url = !string.IsNullOrWhiteSpace(paymentExpandQueryString)
+            var url = !paymentExpandQueryString.IsNullOrWhiteSpace()
                 ? new Uri(uri.OriginalString + paymentExpandQueryString, UriKind.RelativeOrAbsolute)
                 : uri;
             return url;
@@ -45,7 +45,11 @@ namespace SwedbankPay.Sdk.Extensions
                 }
             }
 
+#if NET35
+            var queryString = string.Join(",", s.ToArray());
+#else
             var queryString = string.Join(",", s);
+#endif
             return $"?$expand={queryString}";
         }
     }
