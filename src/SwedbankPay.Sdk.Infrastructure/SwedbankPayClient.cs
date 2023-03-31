@@ -2,6 +2,7 @@
 using SwedbankPay.Sdk.PaymentInstruments;
 using SwedbankPay.Sdk.PaymentOrders;
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 
@@ -11,7 +12,12 @@ namespace SwedbankPay.Sdk
     {
         public SwedbankPayClient(HttpClient httpClient, IPaymentOrdersResource paymentOrders, IConsumersResource consumers, IPaymentInstrumentsResource payments)
         {
-#if !NET35
+#if NET35
+            if (!ServicePointManager.SecurityProtocol.HasFlag((SecurityProtocolType)3072))
+            {
+                ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
+            }
+#else
             if (!ServicePointManager.SecurityProtocol.HasFlag(SecurityProtocolType.Tls12))
             {
                 ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;

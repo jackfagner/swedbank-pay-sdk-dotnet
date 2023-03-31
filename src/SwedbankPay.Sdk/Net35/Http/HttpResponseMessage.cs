@@ -43,7 +43,8 @@ namespace System.Net.Http
             var contentType = _response.ContentType;
             //var encoding = _response.ContentEncoding;
             var encoding = Encoding.UTF8;
-            using (var sr = new StreamReader(_response.GetResponseStream(), encoding))
+            using (var responseStream = _response.GetResponseStream())
+            using (var sr = new StreamReader(responseStream, encoding))
             {
                 return new StringContent(sr.ReadToEnd(), encoding, contentType);
             }
@@ -57,6 +58,7 @@ namespace System.Net.Http
         /// <summary></summary>
         public void Dispose()
         {
+            _response?.Close();
         }
 
         internal HttpResponseMessage(HttpWebResponse webResponse)

@@ -17,13 +17,14 @@ namespace System
         public static bool initProc(T1 p1, T1 p2)
         {
             Type typ1 = typeof(T1);
+            if (typ1 == typeof(Enum))
+                typ1 = p1.GetType();
             if (typ1.IsEnum) typ1 = Enum.GetUnderlyingType(typ1);
             Type[] types = { typ1, typ1 };
             var method = typeof(EnumHelper<T1>).GetMethod("Overlaps", types);
             if (method == null) method = typeof(T1).GetMethod("Overlaps", types);
             if (method == null) throw new MissingMethodException("Unknown type of enum");
-            TestOverlapProc = (Func<T1, T1, bool>)Delegate.CreateDelegate(typeof(Func<T1, T1, bool>), method);
-            return TestOverlapProc(p1, p2);
+            return (bool)method.Invoke(null, new object[] { p1, p2 });
         }
     }
 

@@ -12,12 +12,20 @@ namespace System.Runtime.CompilerServices
 
         public void SetException(Exception exception)
         {
-            throw exception;
+            var task = Task;
+            if (task != null)
+                task.Exception = exception;
+            else
+                Task = new Task<T>(exception);
         }
 
         public void SetResult(T result)
         {
-            Task.Result = result;
+            var task = Task;
+            if (task != null)
+                task.Result = result;
+            else
+                Task = new Task<T>(result);
         }
 
         public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) 
@@ -35,6 +43,14 @@ namespace System.Runtime.CompilerServices
         public void Start<TStateMachine>(ref TStateMachine stateMachine) 
             where TStateMachine : IAsyncStateMachine
         {
+            try
+            {
+                stateMachine.MoveNext();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public void SetStateMachine(IAsyncStateMachine stateMachine)

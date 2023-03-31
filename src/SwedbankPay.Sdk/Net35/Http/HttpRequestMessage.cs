@@ -51,7 +51,8 @@ namespace System.Net.Http
             {
                 if (!String.IsNullOrEmpty(this.Content.ContentType))
                     httpRequest.ContentType = this.Content.ContentType;
-                this.Content.WriteTo(httpRequest.GetRequestStream());
+                using (var requestStream = httpRequest.GetRequestStream())
+                    this.Content.WriteTo(requestStream);
             }
             HttpWebResponse response = null;
             try

@@ -10,7 +10,24 @@ namespace System.Threading.Tasks
     /// <typeparam name="T">Task type</typeparam>
     public class Task<T> : Task
     {
-        public T Result { get; internal set; }
+        private T _result = default(T);
+
+        public T Result
+        {
+            get
+            {
+                var e = this.Exception;
+                if (e != null)
+                    throw e;
+                return _result;
+            }
+            set
+            {
+                _result = value;
+            }
+        }
+
+        internal Exception Exception { get; set; }
 
         public TaskAwaiter<T> GetAwaiter()
         {
@@ -20,6 +37,11 @@ namespace System.Threading.Tasks
         public Task(T result)
         {
             this.Result = result;
+        }
+
+        internal Task(Exception exception)
+        {
+            this.Exception = exception;
         }
     }
 
