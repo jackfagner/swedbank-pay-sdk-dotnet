@@ -3,7 +3,7 @@ using System;
 
 namespace System.Runtime.CompilerServices
 {
-    public interface ICriticalNotifyCompletion
+    internal interface ICriticalNotifyCompletion
     {
         void UnsafeOnCompleted(Action continuation);
     }

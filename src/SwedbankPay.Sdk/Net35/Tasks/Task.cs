@@ -8,9 +8,11 @@ namespace System.Threading.Tasks
     /// Task polyfill for .NET 3.5
     /// </summary>
     /// <typeparam name="T">Task type</typeparam>
-    public class Task<T> : Task
+    public class Task<T>
     {
         private T _result = default(T);
+
+        internal Exception Exception { get; set; }
 
         public T Result
         {
@@ -27,9 +29,7 @@ namespace System.Threading.Tasks
             }
         }
 
-        internal Exception Exception { get; set; }
-
-        public TaskAwaiter<T> GetAwaiter()
+        internal TaskAwaiter<T> GetAwaiter()
         {
             return new TaskAwaiter<T>(this);
         }
@@ -43,14 +43,6 @@ namespace System.Threading.Tasks
         {
             this.Exception = exception;
         }
-    }
-
-    /// <summary>
-    /// Task polyfill for .NET 3.5
-    /// </summary>
-    public class Task
-    {
-        
     }
 }
 #endif

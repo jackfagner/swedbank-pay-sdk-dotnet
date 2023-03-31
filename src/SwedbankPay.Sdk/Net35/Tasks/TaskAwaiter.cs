@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace System.Runtime.CompilerServices
 {
-    public class TaskAwaiter<T> : TaskAwaiter
+    internal class TaskAwaiter<T> : TaskAwaiter
     {
         private Task<T> _task;
 
@@ -21,7 +21,7 @@ namespace System.Runtime.CompilerServices
         }
     }
 
-    public abstract class TaskAwaiter : INotifyCompletion, ICriticalNotifyCompletion
+    internal abstract class TaskAwaiter : INotifyCompletion, ICriticalNotifyCompletion
     {
         public abstract Boolean IsCompleted { get; }
 

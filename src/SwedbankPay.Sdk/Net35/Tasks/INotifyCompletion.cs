@@ -3,7 +3,7 @@ using System;
 
 namespace System.Runtime.CompilerServices
 {
-    public interface INotifyCompletion
+    internal interface INotifyCompletion
     {
         void OnCompleted(Action continuation);
     }
