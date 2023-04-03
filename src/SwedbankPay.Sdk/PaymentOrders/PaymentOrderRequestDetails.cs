@@ -133,5 +133,15 @@ namespace SwedbankPay.Sdk.PaymentOrders
         /// If set to true, disables the frame around the payment menu. Usefull when only showing one payment instrument.
         /// </summary>
         public bool? DisablePaymentMenu { get; set; }
+
+        /// <summary>
+        /// Used to tag the payment as Checkout v3. Mandatory for Checkout v3, as you won’t get the operations in the response without submitting this field.
+        /// </summary>
+        public string ProductName { get; set; }
+
+        /// <summary>
+        /// Indicates which implementation to use. Mandatory for Business implementation. Could be Business, Enterprise, PaymentsOnly or Starter
+        /// </summary>
+        public string Implementation { get; set; }
     }
 }

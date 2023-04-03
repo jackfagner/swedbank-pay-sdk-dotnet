@@ -26,16 +26,19 @@ namespace SwedbankPay.Sdk.PaymentOrders
         /// Creates a cancellation for a payment order.
         /// </summary>
         public const string CreatePaymentOrderCancel = "create-paymentorder-cancel";
+        public const string PaymentOrderCancelV3 = "cancel";
 
         /// <summary>
         /// Creates a capture for the payment order.
         /// </summary>
         public const string CreatePaymentOrderCapture = "create-paymentorder-capture";
+        public const string PaymentOrderCaptureV3 = "capture";
 
         /// <summary>
         /// Creates a reversal for the payment order.
         /// </summary>
         public const string CreatePaymentOrderReversal = "create-paymentorder-reversal";
+        public const string PaymentOrderReversalV3 = "reversal";
 
         /// <summary>
         /// Gets a payment order that is paid.
@@ -56,15 +59,23 @@ namespace SwedbankPay.Sdk.PaymentOrders
         /// Operation to update the payment order to aborted state.
         /// </summary>
         public const string UpdatePaymentOrderAbort = "update-paymentorder-abort";
+        public const string PaymentOrderAbortV3 = "abort";
 
         /// <summary>
         /// Operation for updating the payment order.
         /// </summary>
         public const string UpdatePaymentOrderUpdateOrder = "update-paymentorder-updateorder";
+        public const string PaymentOrderUpdateOrderV3 = "update-order";
 
         /// <summary>
         /// Operation to view the payment order in a iframe.
         /// </summary>
         public const string ViewPaymentOrder = "view-paymentorder";
+        public const string ViewPaymentOrderV3 = "view-checkout";
+
+        /// <summary>
+        /// Operation to view the payment order in a iframe.
+        /// </summary>
+        public const string RedirectCheckout = "redirect-checkout";
     }
 }

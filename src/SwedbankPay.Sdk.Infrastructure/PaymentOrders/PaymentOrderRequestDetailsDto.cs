@@ -19,8 +19,10 @@ namespace SwedbankPay.Sdk.PaymentOrders
             UserAgent = paymentOrder.UserAgent;
             VatAmount = paymentOrder.VatAmount.InLowestMonetaryUnit;
             DisablePaymentMenu = paymentOrder.DisablePaymentMenu;
+            ProductName = paymentOrder.ProductName;
+            Implementation = paymentOrder.Implementation;
 
-            if(paymentOrder.Metadata != null)
+            if (paymentOrder.Metadata != null)
             {
                 Metadata = new MetadataDto(paymentOrder.Metadata);
             }
@@ -75,5 +77,9 @@ namespace SwedbankPay.Sdk.PaymentOrders
         public bool? DisablePaymentMenu { get; }
 
         public MetadataDto Metadata { get; }
+
+        public string ProductName { get; }
+
+        public string Implementation { get; }
     }
 }

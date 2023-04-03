@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SwedbankPay.Sdk.PaymentOrders
 {
@@ -123,9 +124,20 @@ namespace SwedbankPay.Sdk.PaymentOrders
         /// </summary>
         public Amount VatAmount { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public string InitiatingSystemUserAgent { get; }
+
+        public IList<string> AvailableInstruments { get; }
+        public string Implementation { get; }
+        public string Integration { get; }
+        public bool? InstrumentMode { get; }
+        public bool? GuestMode { get; }
+        public State Status { get; }
+        public Identifiable History { get; }
+        public Identifiable Failed { get; }
+        public Identifiable Aborted { get; }
+        public Identifiable Paid { get; }
+        public Identifiable Cancelled { get; }
+        public Identifiable FinancialTransactions { get; }
+        public Identifiable FailedAttempts { get; }
     }
 }

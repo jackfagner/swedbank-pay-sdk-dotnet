@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SwedbankPay.Sdk.PaymentOrders
 {
@@ -10,7 +11,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
             Amount = paymentOrder.Amount;
             Created = paymentOrder.Created;
             Currency = new Currency(paymentOrder.Currency);
-            CurrentPayment = paymentOrder.CurrentPayment.Map();
+            CurrentPayment = paymentOrder.CurrentPayment?.Map();
             Description = paymentOrder.Description;
             Language = new Language(paymentOrder.Language);
             Metadata = paymentOrder.Metadata?.Map();
@@ -26,6 +27,21 @@ namespace SwedbankPay.Sdk.PaymentOrders
             UserAgent = paymentOrder.UserAgent;
             VatAmount = paymentOrder.VatAmount;
             InitiatingSystemUserAgent = paymentOrder.InitiatingSystemUserAgent;
+            
+            //CheckoutV3
+            AvailableInstruments = paymentOrder.AvailableInstruments ?? new List<String>();
+            Implementation = paymentOrder.Implementation;
+            Integration = paymentOrder.Integration;
+            InstrumentMode = paymentOrder.InstrumentMode;
+            GuestMode = paymentOrder.GuestMode;
+            Status = paymentOrder.Status; //Same as "State"
+            History = paymentOrder.History;
+            Failed = paymentOrder.Failed;
+            Aborted = paymentOrder.Aborted;
+            Paid = paymentOrder.Paid;
+            Cancelled = paymentOrder.Cancelled;
+            FinancialTransactions = paymentOrder.FinancialTransactions;
+            FailedAttempts = paymentOrder.FailedAttempts;
 
             OrderItems = paymentOrder.OrderItems?.Map();
             Payers = paymentOrder.Payer?.Map();
@@ -58,5 +74,18 @@ namespace SwedbankPay.Sdk.PaymentOrders
         public string UserAgent { get; }
         public Amount VatAmount { get; }
         public string InitiatingSystemUserAgent { get; }
+        public IList<string> AvailableInstruments { get; }
+        public string Implementation { get; }
+        public string Integration { get; }
+        public bool? InstrumentMode { get; }
+        public bool? GuestMode { get; }
+        public State Status { get; }
+        public Identifiable History { get; }
+        public Identifiable Failed { get; }
+        public Identifiable Aborted { get; }
+        public Identifiable Paid { get; }
+        public Identifiable Cancelled { get; }
+        public Identifiable FinancialTransactions { get; }
+        public Identifiable FailedAttempts { get; }
     }
 }

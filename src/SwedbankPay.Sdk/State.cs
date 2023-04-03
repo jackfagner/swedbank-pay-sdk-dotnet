@@ -67,6 +67,7 @@
                 "Pending" => Pending,
                 "Aborted" => Aborted,
                 "AwaitingActivity" => AwaitingActivity,
+                null => null,
                 _ => new State(originalState, originalState),
             };
         }

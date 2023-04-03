@@ -26,6 +26,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
                 switch (httpOperation.Rel.Value)
                 {
                     case PaymentOrderResourceOperations.CreatePaymentOrderCapture:
+                    case PaymentOrderResourceOperations.PaymentOrderCaptureV3:
                         Capture = async payload =>
                         {
                             var requestDto = new PaymentOrderCaptureRequestDto(payload);
@@ -34,6 +35,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
                         };
                         break;
                     case PaymentOrderResourceOperations.CreatePaymentOrderCancel:
+                    case PaymentOrderResourceOperations.PaymentOrderCancelV3:
                         Cancel = async payload =>
                         {
                             var requestDto = new PaymentOrderCancelRequestDto(payload);
@@ -42,6 +44,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
                         };
                         break;
                     case PaymentOrderResourceOperations.CreatePaymentOrderReversal:
+                    case PaymentOrderResourceOperations.PaymentOrderReversalV3:
                         Reverse = async payload =>
                         {
                             var url = httpOperation.Href.GetUrlWithQueryString(PaymentExpand.All);
@@ -51,6 +54,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
                         };
                         break;
                     case PaymentOrderResourceOperations.UpdatePaymentOrderUpdateOrder:
+                    case PaymentOrderResourceOperations.PaymentOrderUpdateOrderV3:
                         Update = async payload =>
                         {
                             var url = httpOperation.Href.GetUrlWithQueryString(PaymentExpand.All);
@@ -60,6 +64,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
                         };
                         break;
                     case PaymentOrderResourceOperations.UpdatePaymentOrderAbort:
+                    case PaymentOrderResourceOperations.PaymentOrderAbortV3:
                         Abort = async payload =>
                         {
                             var url = httpOperation.Href.GetUrlWithQueryString(PaymentExpand.All);
@@ -68,7 +73,11 @@ namespace SwedbankPay.Sdk.PaymentOrders
                         };
                         break;
                     case PaymentOrderResourceOperations.ViewPaymentOrder:
+                    case PaymentOrderResourceOperations.ViewPaymentOrderV3:
                         View = httpOperation;
+                        break;
+                    case PaymentOrderResourceOperations.RedirectCheckout:
+                        RedirectCheckout = httpOperation;
                         break;
                 }
                 Add(httpOperation.Rel, httpOperation);
@@ -81,5 +90,6 @@ namespace SwedbankPay.Sdk.PaymentOrders
         public Func<PaymentOrderReversalRequest, Task<IReversalResponse>> Reverse { get; }
         public Func<PaymentOrderUpdateRequest, Task<IPaymentOrderResponse>> Update { get; }
         public HttpOperation View { get; }
+        public HttpOperation RedirectCheckout { get; }
     }
 }
