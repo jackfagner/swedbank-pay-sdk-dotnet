@@ -24,7 +24,9 @@ namespace SwedbankPay.Sdk.PaymentOrders
 			NationalIdentifier = payer.NationalIdentifier != null ? new NationalIdentifierDto(payer.NationalIdentifier) : null;
 			ShippingAddress = payer.ShippingAddress;
 			WorkPhoneNumber = payer.WorkPhoneNumber;
-		}
+			DigitalProducts = payer.DigitalProducts;
+			PayerReference = payer.PayerReference;
+        }
 
 		public string Id { get; set; }
 		public AccountInfo AccountInfo { get; set; }
@@ -38,8 +40,11 @@ namespace SwedbankPay.Sdk.PaymentOrders
 		public NationalIdentifierDto NationalIdentifier { get; set; }
 		public Address ShippingAddress { get; set; }
 		public string WorkPhoneNumber { get; set; }
+		public bool? DigitalProducts { get; set; }
+		public string PayerReference { get; set; }
 
-		internal PayerResponse Map()
+
+        internal PayerResponse Map()
 		{
 			var uri = new Uri(Id, UriKind.RelativeOrAbsolute);
 			var payer = new PayerResponse(uri)

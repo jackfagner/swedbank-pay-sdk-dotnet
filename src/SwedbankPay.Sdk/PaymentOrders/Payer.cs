@@ -62,5 +62,8 @@
         ///     Optional (increases chance for challenge flow if not set)
         /// </summary>
         public string WorkPhoneNumber { get; set; }
+
+        public bool? DigitalProducts { get; set; }
+        public string PayerReference { get; set; }
     }
 }
