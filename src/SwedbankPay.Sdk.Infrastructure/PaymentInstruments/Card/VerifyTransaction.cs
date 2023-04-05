@@ -70,5 +70,9 @@ namespace SwedbankPay.Sdk.PaymentInstruments.Card
         public Amount VatAmount { get; }
 
         public IProblem Problem { get; }
+
+        string ITransaction.ReceiptReference { get; }
+
+        string ITransaction.ReconciliationNumber { get; }
     }
 }

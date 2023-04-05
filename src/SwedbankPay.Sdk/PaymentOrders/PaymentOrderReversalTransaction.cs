@@ -50,5 +50,7 @@ namespace SwedbankPay.Sdk.PaymentOrders
         /// The amount in the reversal being value added taxes.
         /// </summary>
         public Amount VatAmount { get; }
+
+        public string ReceiptReference { get; set; }
     }
 }

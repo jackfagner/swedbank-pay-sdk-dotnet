@@ -116,5 +116,9 @@ namespace SwedbankPay.Sdk.PaymentInstruments
         /// <inheritdoc/>
         /// </summary>
         public IProblem Problem { get; set; }
+
+        public string ReceiptReference { get; internal set; }
+
+        public string ReconciliationNumber { get; internal set; }
     }
 }

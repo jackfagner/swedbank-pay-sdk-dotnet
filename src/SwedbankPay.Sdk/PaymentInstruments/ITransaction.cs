@@ -81,5 +81,9 @@ namespace SwedbankPay.Sdk.PaymentInstruments
         /// Indicates any problems with the transaction.
         /// </summary>
         IProblem Problem { get; }
+
+        string ReceiptReference { get; }
+
+        string ReconciliationNumber { get; }
     }
 }

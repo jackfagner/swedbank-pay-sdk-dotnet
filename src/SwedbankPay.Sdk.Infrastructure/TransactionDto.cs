@@ -20,6 +20,8 @@ namespace SwedbankPay.Sdk
         public long VatAmount { get; set; }
         public string Activity { get; set; }
         public ProblemDto Problem { get; set; }
+        public string ReceiptReference { get; set; }
+        public string ReconciliationNumber { get; set; }
 
         internal ITransaction Map()
         {
@@ -50,7 +52,9 @@ namespace SwedbankPay.Sdk
                                    operations,
                                    Activity)
             {
-                Problem = problem
+                Problem = problem,
+                ReceiptReference = ReceiptReference,
+                ReconciliationNumber = ReconciliationNumber
             };
             return transaction;
         }
