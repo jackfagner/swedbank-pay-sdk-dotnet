@@ -17,6 +17,7 @@ namespace SwedbankPay.Sdk.JsonSerialization
             {
                 Formatting = Formatting.Indented,
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Converters = new JsonConverter [] { new StringJsonConverter() },
                 NullValueHandling = NullValueHandling.Ignore,
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc
             });
