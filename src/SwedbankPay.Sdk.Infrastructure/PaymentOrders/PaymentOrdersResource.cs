@@ -52,5 +52,15 @@ namespace SwedbankPay.Sdk.PaymentOrders
 
             return new PaymentOrderResponse(paymentOrderResponseContainer, HttpClient);
         }
+
+        public IPaymentOrderCallbackResponse ParseCallback(String json)
+        {
+            if (json == null)
+            {
+                throw new ArgumentNullException(nameof(json), $"{json} cannot be null");
+            }
+
+            return new PaymentOrderCallbackResponse(json);
+        }
     }
 }
