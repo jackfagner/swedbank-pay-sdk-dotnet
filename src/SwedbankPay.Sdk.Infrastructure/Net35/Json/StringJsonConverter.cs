@@ -13,7 +13,7 @@ namespace System.Text.Json
         public override bool CanConvert(Type objectType)
         {
             if (objectType != null &&
-                objectType.Assembly.FullName.StartsWith("SwedbankPay.Sdk") &&
+                objectType.FullName.StartsWith("SwedbankPay.Sdk") &&
                 objectType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Where(m => 
                     m.Name == "ToString" && m.GetParameters().Length == 0).Count() == 1 &&
                 objectType.GetConstructor(new Type[] { typeof(String) }) != null

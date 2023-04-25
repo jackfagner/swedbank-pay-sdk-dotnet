@@ -8,6 +8,8 @@ namespace System.Text.Json
     {
         public JsonSerializerSettings Settings { get; }
 
+        public String OutputDebugPath { get; set; }
+
         public JsonSerializerOptions(JsonSerializerSettings settings)
         {
             this.Settings = settings;
