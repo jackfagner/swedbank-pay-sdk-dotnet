@@ -11,7 +11,7 @@ namespace System.Text.Json
     {
         internal static T Deserialize<T>(String json, JsonSerializerOptions options = null)
         {
-            if (!String.IsNullOrEmpty(options.OutputDebugPath) && Directory.Exists(options.OutputDebugPath))
+            if (!String.IsNullOrEmpty(options?.OutputDebugPath) && Directory.Exists(options.OutputDebugPath))
                 File.WriteAllText(Path.Combine(options.OutputDebugPath, "DeserializeInput_" + DateTime.Now.Ticks + ".json"), json, Encoding.UTF8);
 
             return JsonConvert.DeserializeObject<T>(json, 
@@ -23,7 +23,7 @@ namespace System.Text.Json
             var result = JsonConvert.SerializeObject(obj, 
                 (options ?? JsonSerialization.Settings)?.Settings);
 
-            if (!String.IsNullOrEmpty(options.OutputDebugPath) && Directory.Exists(options.OutputDebugPath))
+            if (!String.IsNullOrEmpty(options?.OutputDebugPath) && Directory.Exists(options.OutputDebugPath))
                 File.WriteAllText(Path.Combine(options.OutputDebugPath, "SerializeResult_" + DateTime.Now.Ticks + ".json"), result, Encoding.UTF8);
 
             return result;
